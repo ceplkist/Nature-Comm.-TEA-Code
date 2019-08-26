@@ -55,10 +55,10 @@ on the Matlab command line. For example, `help HS_calculation_all`. Note that `s
 
 ### script1: Convergence check for CO2RR-OOR
 Sequencial script of process synthesis, process simulation, technoeconomic analysis, and LCCs evaluation.
-`script1_convergenceCheck.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at base case
-`script1_convergenceCheckCascade.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at base case
-`script1_convergenceCheckOptimal.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at optimal
-`script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case
+`script1_convergenceCheck.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at base case.
+`script1_convergenceCheckCascade.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at base case.
+`script1_convergenceCheckOptimal.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at optimal.
+`script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case.
 
 
 - If you are only interested a demo of how our Multi-CD algorithm works, you can skip this step and proceed directly to `demo2`. 
