@@ -28,10 +28,13 @@ You can do one of the following to obtain the latest code package.
 * **Download**:   zipped archive  [Nature-Comm.-TEA-Code-master.zip](https://github.com/ceplkist/Nature-Comm.-TEA-Code/archive/master.zip)
 * **Clone**: clone the repository from github: ```git clone https://github.com/ceplkist/Nature-Comm.-TEA-Code.git```
 
-### Running
+### System Requirements
 
-* You need MATLAB with the {statistics and machine learning, neural network, curve fitting} toolboxes.
-* Code was developed using MATLAB R2016b, although older versions may also work. Please let us know if you have any issue with older releases.
+**Software Requirements:**
+To run the package, you need Matlab with the {Statistics and Machine Learning Toolbox and Parallel Computing Toolbox (option)}. Code was tested in Matlab versions R2018b-R2019a, on Window 10. We tried to use basic Matlab functionalities whenever possible, so that the code could be used in other versions of Matlab. Please feel free to let us know if you encounter any problem in other versions of Matlab.
+
+**Hardware Requirements:**
+The package requires only a standard computer, with enough RAM to support the handling of the data matrix and run Aspen Plus process simulator.
 
 
 
