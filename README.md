@@ -2,7 +2,7 @@
 Automatic Process Synthesis Framework 
 ============
 
-Matlab code for an effective automatic process synthesis framework to guide process simulations, which are then employed to predict the levelized costs of chemicals (LCCs). In particular base code has been developed for technoeconomic analysis of electrochemical processes coupling the CO2 reduction reaction (CO2RR) with the organic oxidation reaction (OOR) promising techniques for producing clean chemicals and utilizing renewable energy. 
+Matlab code for an effective automatic process synthesis framework to guide process simulations, which are then employed to predict the levelized costs of chemicals (LCCs). In particular, base code has been developed for technoeconomic analysis of electrochemical processes coupling the CO2 reduction reaction (CO2RR) with the organic oxidation reaction (OOR) promising techniques for producing clean chemicals and utilizing renewable energy. 
 
 If you find a bug or have any question, you can either [create an issue](https://github.com/ceplkist/Nature-Comm.-TEA-Code/issues/new) or send an email. Repository is maintained by Jonggeol Na (black90star@gmail.com) and Ung Lee (ulee@kist.re.kr). 
 
