@@ -5,14 +5,10 @@ setcolors;
 load materials.mat
 load superstructure.mat;
 worker_num = 9;
-% global file_name h1 h2 h3 h4 h5 h6 h7 h8 h9
 parpool(worker_num);
 count_GSA = 1;
-% GSA_index = [0;0;0;1;0;0;1;1;1;0;1;1;1;1;1;1;1;1;1;1;0;0;0;1;0;0;1;1;1;0;0;0;0;1;0;1;1;1;0;1;0;0;0;1;0;0;1;1;1;0;0;0;0;1;0;0;1;1;1;0;1;1;1;1;1;1;1;1;1;1;0;0;0;1;0;0;1;1;1;0];
-for cat=[5] %[4 5]
-    for ano=[10] %[13 12 11 8 17 9 6 7 5 10]
-%         if GSA_index(count_GSA) == 1
-%             count_GSA = count_GSA+1;
+for cat=1:16
+    for ano=1:18
             %% generate each folder and copy the files
             for i=1:worker_num
                 mydir = fullfile(pwd, ['Functions\ASPEN_FILE\', num2str(i)]);
@@ -42,7 +38,6 @@ for cat=[5] %[4 5]
                     copyfile([pwd,'\Functions\ASPEN_FILE\Final\basefile_include_reactor_PR.bkp'],mydir,'f');
                     copyfile([pwd,'\Functions\ASPEN_FILE\Final\PSA1.atmlz'],mydir,'f');
                     copyfile([pwd,'\Functions\ASPEN_FILE\Final\PSA2.atmlz'],mydir,'f');
-                    %                 copyfile(DATA.Dir,mydir,'f');
                 end
             end
             %% GSA setting
@@ -53,7 +48,6 @@ for cat=[5] %[4 5]
             pro = pro_AddInput(pro, @()pdf_Sobol([0.01 1]), 'D2'); % Faraday efficiency Cathode
             pro = pro_AddInput(pro, @()pdf_Sobol([0.01 1]), 'D3'); % Faraday efficiency Anode
             pro = pro_AddInput(pro, @()pdf_Sobol([0.01 1]), 'D4'); % Overpotential
-            %         pro = pro_AddInput(pro, @()pdf_Sobol([0 1]), 'D5');
             
             pro = pro_SetModel(pro, @(x)objective_GSA(x,cat,ano,materials,superstructure), 'model');
             Sfast = GSA_FAST_GetSi_MultiOut_ASPEN(pro);
@@ -61,9 +55,6 @@ for cat=[5] %[4 5]
             
             save(filename, 'Sfast','-append');
             pause(5);
-%         else
-%             count_GSA = count_GSA+1;
-%         end
     end
 end
 
@@ -79,12 +70,12 @@ AnodeCandidate = [19 20 21 22 23 24 25 26 27 28 29 30 31 34 36 37 38 39];
 input.PV = 40; % MW
 input.Solar = 6.65*1000; %(https://www.nrel.gov/gis/data-solar.html) annual average for california DNI State
 % 'REC:CO2','REC:C:EL','REC:A:EL','REC:A:CH','REC:COP'
-input.Ratio = [0.90 0.90 0.90 0.90 0.90]; % not to purge stream °¡Á¤
+input.Ratio = [0.90 0.90 0.90 0.90 0.90]; % not to purge stream ê°€ì •
 input.temperature = 298.15; % K
 input.pressure    = 101325; % Pa
 
-Efficiency.panel = 0.17; %±×³É °¡Á¤ ÀûÀýÇÑ °ªÀÓ
-Efficiency.ratio = 0.2; %±×³É °¡Á¤ ÀûÀýÇÑ °ªÀÓ
+Efficiency.panel = 0.17; %ê·¸ëƒ¥ ê°€ì • ì ì ˆí•œ ê°’ìž„
+Efficiency.ratio = 0.2; %ê·¸ëƒ¥ ê°€ì • ì ì ˆí•œ ê°’ìž„
 CurrentDensity = 500; %mA/cm2
 cost; % pre-defined COST
 type = 3;
@@ -176,25 +167,23 @@ cascade            = 0;
 workerID =  labindex;
 NAME = strjoin([strjoin(materials.name(components.cathode),''),'-',strjoin(materials.name(components.anode),'')],'');
 
-
-
 %% Calculate Process Model
 
-% ±âº»¼¼ÆÃ
+% ê¸°ë³¸ì„¸íŒ…
 [ProductionRate,Area] = electrolyzer(Efficiency, CurrentDensity, potential, materials, components, input);
 input.CO2 = max(sum(ProductionRate.cathode(:).*materials.carbon(components.cathode(:))),0.01)*1.1+0.00001;
 input.CH  = sum(ProductionRate.anode(:).*materials.carbon(components.anode(:)))*1.1;
 water_temp = cell2mat(materials.water);
 input.WATER = sum(ProductionRate.anode(:).*water_temp(components.anode(:)))*1.1;
 
-% ¾Æ½ºÆæ °ñ°Ý Á¦ÀÛ
+% ì•„ìŠ¤íŽœ ê³¨ê²© ì œìž‘
 [G,process,h] = gen_process(materials,superstructure, components, cascade,workerID,NAME);
-% ¹«¾ð°¡ÀÇ ÀÌÀ¯·Î Visible Çß´Ù ²¨¾ß Á¤»óÀûÀ¸·Î ÀÛµ¿
+% ë¬´ì–¸ê°€ì˜ ì´ìœ ë¡œ Visible í–ˆë‹¤ êº¼ì•¼ ì •ìƒì ìœ¼ë¡œ ìž‘ë™
 set(h, 'Visible', 1);
 set(h, 'Visible', 0);
 
-% RunÇÏ°í µ¥ÀÌÅÍ »Ì±â, ¹º°¡ÀÇ ¹®Á¦·Î ¿À·ù°¡ ³ª¸é reinitializeÇÏ°í ´Ù½Ã µ¹¸®°í °á°ú »Ì±â. ±×·¡µµ ¿¡·¯°¡ ³ª¸é ¹º°¡
-% ¹®Á¦°¡ ÀÖ´Â °ÍÀÌ¹Ç·Î ¿À·ù ¹ÝÈ¯ ÈÄ Á¾·á
+% Runí•˜ê³  ë°ì´í„° ë½‘ê¸°, ë­”ê°€ì˜ ë¬¸ì œë¡œ ì˜¤ë¥˜ê°€ ë‚˜ë©´ reinitializeí•˜ê³  ë‹¤ì‹œ ëŒë¦¬ê³  ê²°ê³¼ ë½‘ê¸°. ê·¸ëž˜ë„ ì—ëŸ¬ê°€ ë‚˜ë©´ ë­”ê°€
+% ë¬¸ì œê°€ ìžˆëŠ” ê²ƒì´ë¯€ë¡œ ì˜¤ë¥˜ ë°˜í™˜ í›„ ì¢…ë£Œ
 try
     [ConvergenceState, h] = cal_process(Efficiency, CurrentDensity, potential, materials, components, input, process, h);
     [DATA, h] = get_results(Efficiency, CurrentDensity, potential, materials, components, input, process, h);
@@ -248,9 +237,9 @@ if length(components.anode) == 2
     end
 end
 
-% ¸¸¾à error°¡ ³ª°Å³ª È¿À²ÀûÀÌÁö ¸øÇÑ ÀÌÀ¯·Î recovery°¡ 0.6 ÀÌÇÏÀÏ °æ¿ì alternative °øÁ¤ (flash ÇÑ°³
-% ´õ)·Î ¹Ù²Ù°í ´Ù½Ã ¼ö·Å½ÃÅ²´Ù. Á¾Á¾ ¿©±â¼­µµ ¿¡·¯°¡ (blockÀÌ ¾ÈÆìÁ®¼­ °ªÀÌ ¾Èµé¾î°¡´Â ÀÌ»óÇÑ ¿¡·¯) ³ª¹Ç·Î ÀÌ¸¦ ÇØ°áÇÏ±â
-% À§ÇØ ¾Æ¿¡ Ã³À½ºÎÅÍ ¸¸µå´Â ÄÚµå¸¦ »ç¿ëÇÑ´Ù.
+% ë§Œì•½ errorê°€ ë‚˜ê±°ë‚˜ íš¨ìœ¨ì ì´ì§€ ëª»í•œ ì´ìœ ë¡œ recoveryê°€ 0.6 ì´í•˜ì¼ ê²½ìš° alternative ê³µì • (flash í•œê°œ
+% ë”)ë¡œ ë°”ê¾¸ê³  ë‹¤ì‹œ ìˆ˜ë ´ì‹œí‚¨ë‹¤. ì¢…ì¢… ì—¬ê¸°ì„œë„ ì—ëŸ¬ê°€ (blockì´ ì•ˆíŽ´ì ¸ì„œ ê°’ì´ ì•ˆë“¤ì–´ê°€ëŠ” ì´ìƒí•œ ì—ëŸ¬) ë‚˜ë¯€ë¡œ ì´ë¥¼ í•´ê²°í•˜ê¸°
+% ìœ„í•´ ì•„ì— ì²˜ìŒë¶€í„° ë§Œë“œëŠ” ì½”ë“œë¥¼ ì‚¬ìš©í•œë‹¤.
 if sum(errorIndicator)>0
     try
         [ConvergenceState,h] = gencal_process_forError(Efficiency, CurrentDensity, potential, materials, components, input, process, h, errorIndicator);
@@ -315,7 +304,7 @@ if length(components.anode) == 2
     end
 end
 
-% ±×³É ÀúÀå
+% ê·¸ëƒ¥ ì €ìž¥
 DATA.Dir = strjoin([pwd,'\Functions\ASPEN_FILE\',num2str(labindex),'\',strjoin(materials.name(components.cathode),''),'-',strjoin(materials.name(components.anode),''),'.bkp'],'');
 h.SaveAs(DATA.Dir);
 
