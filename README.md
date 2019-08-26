@@ -53,16 +53,23 @@ help [function-name]
 on the Matlab command line. For example, `help HS_calculation_all`. Note that `setpaths.m` should have been run in advance, if not already called in the beginning of the demo script.
 
 
-### script1: Pre-processing (Hi-C to correlation matrix)
+### script1: Convergence check for CO2RR-OOR
+Sequencial script of process synthesis, process simulation, technoeconomic analysis, and LCCs evaluation.
+`script1_convergenceCheck.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at base case
 
-`demo1_prepCorr_HiC.m` - demonstrates the pre-processing, going from the Hi-C matrix to the correlation matrix.
+`script1_convergenceCheckCascade.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at base case
+
+`script1_convergenceCheckOptimal.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at optimal
+
+`script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case
+
 
 - If you are only interested a demo of how our Multi-CD algorithm works, you can skip this step and proceed directly to `demo2`. 
 - Pre-processing is necessary if you want to start from a real Hi-C dataset. 
 No Hi-C dataset is included in this package, but you can download one from a public database. 
 See [Data/readme](Data/readme.md) for more information.
 
-### script2: Identification of domain solutions (Multi-CD)
+### script2: Global sensitivity analysis for CO2RR-OOR
 
 `demo2_MultiCD.m` - demonstrates how Multi-CD works at a fixed lambda (which can be changed by user), by showing each step of the simulated annealing process.
 
