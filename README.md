@@ -1,11 +1,11 @@
 Automatic Process Synthesis Framework 
-============
+***************
 
 
 Matlab code for an effective inference method for analyzing costly experiments, often with multi-dimensional parameters, performed at multiple different settings (sets of design variables) and few repetitions.
 
 If you find a bug or have any question, you can either
-[create an issue](https://github.com/jihyunbak/BayesChemEng/issues/new) 
+[create an issue](https://github.com/jihyunbak/ceplkist/Nature-Comm.-TEA-Code/issues/new) 
 or send an email.
 Repository is maintained by Ji Hyun Bak (jhbak@kias.re.kr). 
 
@@ -17,6 +17,11 @@ _Industrial & Engineering Chemistry Research_.
 [(link)](https://doi.org/10.1021/acs.iecr.9b01062)
 
 If you are only interested in the algorithm, the [document](doc/doc_alg.pdf) in this repository contains the relevant part of the supplementary material that is published with the main paper.
+
+## Abstract:
+Electrochemical processes coupling the CO2 reduction reaction (CO2RR) with the organic oxidation reaction (OOR) are promising techniques for producing clean chemicals and utilizing renewable energy. However, assessments of the economics of CO2RR–OOR technology remain questionable due to diverse CO2RR–OOR combinations and significant process design variability. Here, we report a technoeconomic analysis (TEA) of electrochemical CO2RR–OOR coproduction via conceptual process design and thereby propose potential economic combinations. We first develop a fully automated process synthesis framework to guide process simulations, which are then employed to predict the levelized costs of chemicals (LCCs). We then identify the global sensitivity of current density, Faraday efficiency (FE), and overpotential across 295 electrochemical coproduction processes to both understand and predict LCCs at various technology levels. The analysis highlights the promise that coupling CO2RR with value-added OOR can secure significant economic feasibility.
+
+
 
 
 ## Setup
