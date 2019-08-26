@@ -64,11 +64,8 @@ Sequencial script of process synthesis, process simulation, technoeconomic analy
 
 `script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case
 
-
-- If you are only interested a demo of how our Multi-CD algorithm works, you can skip this step and proceed directly to `demo2`. 
 - Pre-processing is necessary if you want to start from a user-specific process systems dataset.
-Our pre-processing contains `materials.mat` that involve overpotential, reaction information, phases, and other physicochemical properties of CO2RR and OOR reactions and `superstructure.mat` that involve pre-defined process superstructure of electrochemical CO2RR-OOR coproduction process. Please see [Nature-Comm.-TEA-Code/Functions/materials.mat](Nature-Comm.-TEA-Code/Functions/materials.mat
-) and [Functions/superstructure.mat](Nature-Comm.-TEA-Code/Functions/superstructure.mat) for more information.
+Our pre-processing contains `materials.mat` that involve overpotential, reaction information, phases, and other physicochemical properties of CO2RR and OOR reactions and `superstructure.mat` that involve pre-defined process superstructure of electrochemical CO2RR-OOR coproduction process.
 
 ### script2: Global sensitivity analysis for CO2RR-OOR
 
