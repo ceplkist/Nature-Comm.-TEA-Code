@@ -46,12 +46,9 @@ Simply open a demo script in Matlab and run; preferably,
 [script-name]
 ```
 
-run by sections to see the intermediate outcome of each step.
+run by sections to see the intermediate outcome of each step. All custom functions (that do the real job) are in the [Functions](Functions) folder.
 
-All custom functions (that do the real job) are in the [Functions](Functions) folder.
-
-
-on the Matlab command line. For example, `help HS_calculation_all`. Note that `setpaths.m` should have been run in advance, if not already called in the beginning of the demo script.
+Note that `setpaths.m` should have been run in advance, if not already called in the beginning of the demo script.
 
 
 ### script1: Convergence check for CO2RR-OOR
