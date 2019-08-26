@@ -5,8 +5,8 @@ We gratefully utilize other code package(s) that are available online.
 Each intact copy of our original download (including the license if provided) is kept in this directory. 
 
 
-### `MultiPolyRegress`
+### `Global Sensitivity Analysis Toolbox`
 
-- Author: Ahmet Cecen
-- For obtaining the quadratic approximation of the response surface
-- Obtained through the author's [github repository](https://github.com/ahmetcecen/MultiPolyRegress-MatlabCentral)
+- Author: flax
+- Set of Matlab routines developed for calculating sensitivity indices of a generic user-defined model
+- Obtained through the author's [Matlab File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/40759-global-sensitivity-analysis-toolbox)
