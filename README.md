@@ -53,7 +53,7 @@ help [function-name]
 on the Matlab command line. For example, `help HS_calculation_all`. Note that `setpaths.m` should have been run in advance, if not already called in the beginning of the demo script.
 
 
-### demo1: Pre-processing (Hi-C to correlation matrix)
+### script1: Pre-processing (Hi-C to correlation matrix)
 
 `demo1_prepCorr_HiC.m` - demonstrates the pre-processing, going from the Hi-C matrix to the correlation matrix.
 
@@ -62,7 +62,7 @@ on the Matlab command line. For example, `help HS_calculation_all`. Note that `s
 No Hi-C dataset is included in this package, but you can download one from a public database. 
 See [Data/readme](Data/readme.md) for more information.
 
-### demo2: Identification of domain solutions (Multi-CD)
+### script2: Identification of domain solutions (Multi-CD)
 
 `demo2_MultiCD.m` - demonstrates how Multi-CD works at a fixed lambda (which can be changed by user), by showing each step of the simulated annealing process.
 
