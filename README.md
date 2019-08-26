@@ -39,16 +39,17 @@ The package requires only a standard computer, with enough RAM to support the ha
 
 ## Instructions for Use
 
-We provide two example scripts to demonstrate how Multi-CD can be applied, with step-by-step tutorials.
-Simply open a demo script in Matlab and run; preferably, run by sections to see the intermediate outcome of each step.
-Example output plots from the demo scripts are included under [Data](Data).
-
-All custom functions (that do the real job) are in the [Code](Code) folder.
-If you find a function call in the demo and want to see a quick documentation of what it does, you can type 
+We provide example scripts to demonstrate how Automatic Process Synthesis Framework can be applied, with step-by-step tutorials.
+Simply open a demo script in Matlab and run; preferably,
 
 ```
-help [function-name]
+[script-name]
 ```
+
+run by sections to see the intermediate outcome of each step.
+
+All custom functions (that do the real job) are in the [Functions](Functions) folder.
+
 
 on the Matlab command line. For example, `help HS_calculation_all`. Note that `setpaths.m` should have been run in advance, if not already called in the beginning of the demo script.
 
