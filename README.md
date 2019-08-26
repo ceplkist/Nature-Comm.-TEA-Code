@@ -9,7 +9,7 @@ If you find a bug or have any question, you can either [create an issue](https:/
 
 #### Reference:
 
-Authors: Jonggeol Na, Bora Seo, Jeongnam Kim, Chan Woo Lee, Hyunjoo Lee, Yun Jeong Hwang, Byoung Koun Min, Dong Ki Lee, Hyung-Suk Oh, & Ung Lee (2019). General Technoeconomic Analysis for Electrochemical Coproduction Coupling CO2
+Jonggeol Na, Bora Seo, Jeongnam Kim, Chan Woo Lee, Hyunjoo Lee, Yun Jeong Hwang, Byoung Koun Min, Dong Ki Lee, Hyung-Suk Oh, & Ung Lee (2019). General Technoeconomic Analysis for Electrochemical Coproduction Coupling CO2
 Reduction with Organic Oxidation. _Nature Communications_.[(link)](https://doi.org/)
 
 If you are only interested in the algorithm, the algorithm contains the relevant part of the method that is published with the main paper.
@@ -25,8 +25,8 @@ Abstract:
 
 You can do one of the following to obtain the latest code package.
 
-* **Download**:   zipped archive  [BayesChemEng-master.zip](https://github.com/jihyunbak/BayesChemEng/archive/master.zip)
-* **Clone**: clone the repository from github: ```git clone https://github.com/jihyunbak/BayesChemEng.git```
+* **Download**:   zipped archive  [Nature-Comm.-TEA-Code-master.zip](https://github.com/ceplkist/Nature-Comm.-TEA-Code/archive/master.zip)
+* **Clone**: clone the repository from github: ```git clone https://github.com/ceplkist/Nature-Comm.-TEA-Code.git```
 
 ### Running
 
