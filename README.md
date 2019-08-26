@@ -8,7 +8,6 @@ If you find a bug or have any question, you can either [create an issue](https:/
 
 
 #### Reference:
-
 Jonggeol Na, Bora Seo, Jeongnam Kim, Chan Woo Lee, Hyunjoo Lee, Yun Jeong Hwang, Byoung Koun Min, Dong Ki Lee, Hyung-Suk Oh, & Ung Lee (2019). General Technoeconomic Analysis for Electrochemical Coproduction Coupling CO2
 Reduction with Organic Oxidation. _Nature Communications_.[(link)](https://doi.org/)
 
