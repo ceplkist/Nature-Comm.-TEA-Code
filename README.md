@@ -55,16 +55,19 @@ on the Matlab command line. For example, `help HS_calculation_all`. Note that `s
 
 ### script1: Convergence check for CO2RR-OOR
 Sequencial script of process synthesis, process simulation, technoeconomic analysis, and LCCs evaluation.
-`script1_convergenceCheck.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at base case.
-`script1_convergenceCheckCascade.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at base case.
-`script1_convergenceCheckOptimal.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at optimal.
-`script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case.
+
+`script1_convergenceCheck.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at base case
+
+`script1_convergenceCheckCascade.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at base case
+
+`script1_convergenceCheckOptimal.m` - demonstrates the Automatic Process Synthesis Framework for all CO2RR-OOR combinations at optimal
+
+`script1_convergenceCheckCascadeOptimal.m` - demonstrates the Automatic Process Synthesis Framework for cascade CO2RR-OOR combinations at optimal case
 
 
 - If you are only interested a demo of how our Multi-CD algorithm works, you can skip this step and proceed directly to `demo2`. 
-- Pre-processing is necessary if you want to start from a real Hi-C dataset. 
-No Hi-C dataset is included in this package, but you can download one from a public database. 
-See [Data/readme](Data/readme.md) for more information.
+- Pre-processing is necessary if you want to start from a user-specific process systems dataset.
+Our pre-processing contains `materials.mat` that involve overpotential, reaction information, phases, and other physicochemical properties of CO2RR and OOR reactions and `superstructure.mat` that involve pre-defined process superstructure of electrochemical CO2RR-OOR coproduction process. Please see [Functions/materials.mat](Data/materials.mat) and [Functions/superstructure.mat](Data/superstructure.mat) for more information.
 
 ### script2: Global sensitivity analysis for CO2RR-OOR
 
