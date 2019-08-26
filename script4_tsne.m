@@ -1,7 +1,6 @@
 %%
 clear all
 clc
-% load RESULT_FINAL.mat
 load RESULT.mat
 load materials.mat
 
@@ -31,12 +30,12 @@ for i=1:numUnits
     end
     
     for j=1:numUnits
-        for k = {DATA.UNIT{i,14}{1,:}} % ∆Ø¡§ ¿Ø¥÷ø° ø¨∞·µ«æÓ ¿÷¥¬ stream ¿Ã∏ß ∏Ò∑œø° ¥Î«ÿº≠
-            if sum(strcmp(k, {DATA.UNIT{j,14}{1,:}}))~=0 && ... % Unit iø° ¥Î«ÿ ø¨∞·µ«æÓ ¿÷¥¬ Unit j ¿Œµ• iø° IN¿Ã æ¯∞Ì jø°¥¬ OUT¿Ã æ¯¥¬ ¡∂∞«ø° ¥Î«ÿº≠
+        for k = {DATA.UNIT{i,14}{1,:}} % ÌäπÏ†ï Ïú†ÎãõÏóê Ïó∞Í≤∞ÎêòÏñ¥ ÏûàÎäî stream Ïù¥Î¶Ñ Î™©Î°ùÏóê ÎåÄÌï¥ÏÑú
+            if sum(strcmp(k, {DATA.UNIT{j,14}{1,:}}))~=0 && ... % Unit iÏóê ÎåÄÌï¥ Ïó∞Í≤∞ÎêòÏñ¥ ÏûàÎäî Unit j Ïù∏Îç∞ iÏóê INÏù¥ ÏóÜÍ≥† jÏóêÎäî OUTÏù¥ ÏóÜÎäî Ï°∞Í±¥Ïóê ÎåÄÌï¥ÏÑú
                     isempty(strfind(DATA.UNIT{i,14}{2,strcmp(k, {DATA.UNIT{i,14}{1,:}})},'IN')) && isempty(strfind(DATA.UNIT{j,14}{2,strcmp(k, {DATA.UNIT{j,14}{1,:}})},'OUT'))
-                if structure(i,j)==0 % ¡ﬂ√∏¿ª ∏∑∞Ì¿⁄ 1π¯ ¿÷¿∏∏È Ω««‡ »ƒ ∫Ò»∞º∫»≠
+                if structure(i,j)==0 % Ï§ëÏ≤©ÏùÑ ÎßâÍ≥†Ïûê 1Î≤à ÏûàÏúºÎ©¥ Ïã§Ìñâ ÌõÑ ÎπÑÌôúÏÑ±Ìôî
                     temp = strcmp(DATA.UNIT{j,14}{1,strcmp(k, {DATA.UNIT{j,14}{1,:}})},  {DATA.STREAM{:,1}});
-                    structure(i,j) = sum([DATA.STREAM{temp,5}{:,2}]); % connection¿Ã ∞∞¿∫∞‘ ¿÷¿∏∏Èmassflow ∏∏≈≠¿∏∑Œ weight∏¶ ¡÷¥¬ digraph ª˝º∫
+                    structure(i,j) = sum([DATA.STREAM{temp,5}{:,2}]); % connectionÏù¥ Í∞ôÏùÄÍ≤å ÏûàÏúºÎ©¥massflow ÎßåÌÅºÏúºÎ°ú weightÎ•º Ï£ºÎäî digraph ÏÉùÏÑ±
                 else
                 end
             end
@@ -53,6 +52,7 @@ end
 % highlight(p,[1 2 3],'NodeColor','g');                                      %inlet
 % highlight(p,[25 26 27 28],'NodeColor','magenta');                          %outlet
 % highlight(p,[8 9],'NodeColor','red','Marker','s','MarkerSize',12);         %Reactor
+
    unitList = {'COMP:C','COMP:C2','HEAT:C','HEAT:C2','HEAT:C3','HEAT:C4','MIX:A:CT','MIX:A:EL',...
         'MIX:C:EL','MIX:CH','MIX:CO2','PSA1:C','PSA2:C','REC:A:CH','REC:C:EL','REC:CO2','RXN:A','RXN:A-1','RXN:A-2',...
         'RXN:C','RXN:C-2','RXN:C-3','SEP:A:CT','SEP:A:EX','SEP:A:GL','SEP:A:LL','SEP:C:EX','SEP:C:GG','SEP:C:GL','SEP:C:LL','SPL:EL'};
@@ -112,90 +112,7 @@ for i=1:16
     end
 end
 
-% for i=4
-%     for j=[15 16]       
-%         DATA=RESULT{289-15+j,4};
-%         Name_CATHODE(count) = materials.name(CathodeCandidate(i));
-%         Name_ANODE(count) = materials.name(AnodeCandidate(j));
-%         Phase_CATHODE(count) = materials.phase(CathodeCandidate(i));
-%         Phase_ANODE(count) = materials.phase(AnodeCandidate(j));
-%         Phase_Process{count} = [char(Phase_CATHODE(count)) char(Phase_ANODE(count)), 'CASCADE'];
-%         COST(count) = DATA.optimization(1,1);
-%         NPV(count)  = DATA.NPV;
-%         
-%         
-%         MarketCost_CATHODE(count) =  materials.price(CathodeCandidate(i));
-%         MarketCost_ANODE(count) = materials.price(AnodeCandidate(j));
-%         NPV_TOTAL(count) = DATA.NPV;
-%         
-%         C = MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2)/...
-%             (DATA.optimization(1,1)+MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2));
-%         LevelizedCostRatio_CATHODE(count) =  DATA.optimization(1,1)*C;
-%         LevelizedCostRatio_ANODE(count) =  DATA.optimization(2,2)*(1-C);
-%         LevelizedCost_CATHODE(count) =  DATA.optimization(1,1);
-%         LevelizedCost_ANODE(count) =  DATA.optimization(2,2);
-%                
-% %         Phase_Process{count} = char(strjoin([char(Phase_CATHODE(count)) char(Phase_ANODE(count)) Name_CATHODE(count)],''));
-%         count = count+1;
-%     end
-% end
-% 
-% for i=7
-%     for j=[3 4 5]       
-%         DATA=RESULT{291-3+j,4};
-%         Name_CATHODE(count) = materials.name(CathodeCandidate(i));
-%         Name_ANODE(count) = materials.name(AnodeCandidate(j));
-%         Phase_CATHODE(count) = materials.phase(CathodeCandidate(i));
-%         Phase_ANODE(count) = materials.phase(AnodeCandidate(j));
-%         Phase_Process{count} = [char(Phase_CATHODE(count)) char(Phase_ANODE(count)), 'CASCADE'];
-%         COST(count) = DATA.optimization(1,1);
-%         NPV(count)  = DATA.NPV;
-%         
-%         
-%         MarketCost_CATHODE(count) =  materials.price(CathodeCandidate(i));
-%         MarketCost_ANODE(count) = materials.price(AnodeCandidate(j));
-%         NPV_TOTAL(count) = DATA.NPV;
-%         
-%         C = MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2)/...
-%             (DATA.optimization(1,1)+MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2));
-%         LevelizedCostRatio_CATHODE(count) =  DATA.optimization(1,1)*C;
-%         LevelizedCostRatio_ANODE(count) =  DATA.optimization(2,2)*(1-C);
-%         LevelizedCost_CATHODE(count) =  DATA.optimization(1,1);
-%         LevelizedCost_ANODE(count) =  DATA.optimization(2,2);
-%                
-% %         Phase_Process{count} = char(strjoin([char(Phase_CATHODE(count)) char(Phase_ANODE(count)) Name_CATHODE(count)],''));
-%         count = count+1;
-%     end
-% end
-% 
-% for i=16
-%     for j=[17 18]      
-%         DATA=RESULT{294-17+j,4};
-%         Name_CATHODE(count) = materials.name(CathodeCandidate(i));
-%         Name_ANODE(count) = materials.name(AnodeCandidate(j));
-%         Phase_CATHODE(count) = materials.phase(CathodeCandidate(i));
-%         Phase_ANODE(count) = materials.phase(AnodeCandidate(j));
-%         Phase_Process{count} = [char(Phase_CATHODE(count)) char(Phase_ANODE(count)), 'CASCADE'];
-%         COST(count) = DATA.optimization(1,1);
-%         NPV(count)  = DATA.NPV;
-%         
-%         
-%         MarketCost_CATHODE(count) =  materials.price(CathodeCandidate(i));
-%         MarketCost_ANODE(count) = materials.price(AnodeCandidate(j));
-%         NPV_TOTAL(count) = DATA.NPV;
-%         
-%         C = MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2)/...
-%             (DATA.optimization(1,1)+MarketCost_CATHODE(count)/MarketCost_ANODE(count)*DATA.optimization(2,2));
-%         LevelizedCostRatio_CATHODE(count) =  DATA.optimization(1,1)*C;
-%         LevelizedCostRatio_ANODE(count) =  DATA.optimization(2,2)*(1-C);
-%         LevelizedCost_CATHODE(count) =  DATA.optimization(1,1);
-%         LevelizedCost_ANODE(count) =  DATA.optimization(2,2);
-%                
-% %         Phase_Process{count} = char(strjoin([char(Phase_CATHODE(count)) char(Phase_ANODE(count)) Name_CATHODE(count)],''));
-%         count = count+1;
-%     end
-% end
-% X = zeros(size(struc_tsne,2), 2000);
+%% post-processing
 for i=1:size(struc_tsne,2)
 X(i,:) = [reshape(struc_tsne{1,i},1,[])];
 end
@@ -218,14 +135,6 @@ figure(4)
 gscatter(Y(:,1),Y(:,2),Phase_Process')
 
 
-% [Y2,loss2] = tsne(X,'Algorithm','exact','NumDimensions',3);
-% figure(2)
-% subplot(1,3,1)
-% gscatter(Y2(:,1),Y2(:,2),Phase_Process')
-% subplot(1,3,2)
-% gscatter(Y2(:,1),Y2(:,3),Phase_Process')
-% subplot(1,3,3)
-% gscatter(Y2(:,2),Y2(:,3),Phase_Process')
 
     
     
