@@ -1,11 +1,11 @@
-Automatic Process Synthesis Framework 
-***************
 
+Automatic Process Synthesis Framework 
+============
 
 Matlab code for an effective inference method for analyzing costly experiments, often with multi-dimensional parameters, performed at multiple different settings (sets of design variables) and few repetitions.
 
 If you find a bug or have any question, you can either
-[create an issue](https://github.com/jihyunbak/ceplkist/Nature-Comm.-TEA-Code/issues/new) 
+[create an issue](https://github.com/ceplkist/Nature-Comm.-TEA-Code/issues/new) 
 or send an email.
 Repository is maintained by Ji Hyun Bak (jhbak@kias.re.kr). 
 
