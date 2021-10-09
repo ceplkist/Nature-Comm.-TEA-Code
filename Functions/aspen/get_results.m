@@ -248,12 +248,12 @@ end
 %     end
 %     
 %     for j=1:numUnits
-%         for k = {DATA.UNIT{i,14}{1,:}} % Æ¯Á¤ À¯´Ö¿¡ ¿¬°áµÇ¾î ÀÖ´Â stream ÀÌ¸§ ¸ñ·Ï¿¡ ´ëÇØ¼­
-%             if sum(strcmp(k, {DATA.UNIT{j,14}{1,:}}))~=0 && ... % Unit i¿¡ ´ëÇØ ¿¬°áµÇ¾î ÀÖ´Â Unit j ÀÎµ¥ i¿¡ INÀÌ ¾ø°í j¿¡´Â OUTÀÌ ¾ø´Â Á¶°Ç¿¡ ´ëÇØ¼­
+%         for k = {DATA.UNIT{i,14}{1,:}} % íŠ¹ì • ìœ ë‹›ì— ì—°ê²°ë˜ì–´ ìžˆëŠ” stream ì´ë¦„ ëª©ë¡ì— ëŒ€í•´ì„œ
+%             if sum(strcmp(k, {DATA.UNIT{j,14}{1,:}}))~=0 && ... % Unit iì— ëŒ€í•´ ì—°ê²°ë˜ì–´ ìžˆëŠ” Unit j ì¸ë° iì— INì´ ì—†ê³  jì—ëŠ” OUTì´ ì—†ëŠ” ì¡°ê±´ì— ëŒ€í•´ì„œ
 %                     isempty(strfind(DATA.UNIT{i,14}{2,strcmp(k, {DATA.UNIT{i,14}{1,:}})},'IN')) && isempty(strfind(DATA.UNIT{j,14}{2,strcmp(k, {DATA.UNIT{j,14}{1,:}})},'OUT'))
-%                 if structure(i,j)==0 % ÁßÃ¸À» ¸·°íÀÚ 1¹ø ÀÖÀ¸¸é ½ÇÇà ÈÄ ºñÈ°¼ºÈ­
+%                 if structure(i,j)==0 % ì¤‘ì²©ì„ ë§‰ê³ ìž 1ë²ˆ ìžˆìœ¼ë©´ ì‹¤í–‰ í›„ ë¹„í™œì„±í™”
 %                     temp = strcmp(DATA.UNIT{j,14}{1,strcmp(k, {DATA.UNIT{j,14}{1,:}})},  {DATA.STREAM{:,1}});
-%                     structure(i,j) = sum([DATA.STREAM{temp,4}{:,2}]); % connectionÀÌ °°Àº°Ô ÀÖÀ¸¸é moleflow ¸¸Å­À¸·Î weight¸¦ ÁÖ´Â digraph »ý¼º
+%                     structure(i,j) = sum([DATA.STREAM{temp,4}{:,2}]); % connectionì´ ê°™ì€ê²Œ ìžˆìœ¼ë©´ moleflow ë§Œí¼ìœ¼ë¡œ weightë¥¼ ì£¼ëŠ” digraph ìƒì„±
 %                 else
 %                 end
 %             end
@@ -273,6 +273,6 @@ end
 
 %% Cell to Table
 DATA.STREAM = cell2table(DATA.STREAM,...
-    'VariableNames',{'NAME' 'TEMPERATURE' 'PRESSURE' 'MOLEFLOW' ' MASSFLOW' 'VOLFLOW' 'DENSITY'});
+    'VariableNames',{'NAME' 'TEMPERATURE' 'PRESSURE' 'MOLEFLOW' 'MASSFLOW' 'VOLFLOW' 'DENSITY'});
 DATA.UNIT = cell2table(DATA.UNIT,...
     'VariableNames',{'NAME' 'TEMPERATURE' 'PRESSURE' 'HEATDUTY' 'CONDDUTY' 'REBDUTY' 'WORK' 'MOLEFLOW_IN' 'MOLEFLOW_OUT' 'MASSFLOW_IN' 'MASSFLOW_OUT' 'ENTH_IN' 'ENTH_OUT' 'CONNECTION' 'UNIT_NAME'});
