@@ -14,7 +14,7 @@ load materials.mat
 CapitalCosts.flash=[];
 for i = 1:num_unit
     if strcmp(RESULT.UNIT.UNIT_NAME{i},'Flash2')
-        stname=RESULT.UNIT.CONNECTION{i,1}(1,strcmp(RESULT.UNIT.CONNECTION{i,1}(2,:), 'L(OUT)')); % Flash liquid ºÎºĞÀ¸·Î ³ª°¡´Â stream Á¤º¸ µû±â
+        stname=RESULT.UNIT.CONNECTION{i,1}(1,strcmp(RESULT.UNIT.CONNECTION{i,1}(2,:), 'L(OUT)')); % Flash liquid ë¶€ë¶„ìœ¼ë¡œ ë‚˜ê°€ëŠ” stream ì •ë³´ ë”°ê¸°
         LFlow = RESULT.STREAM.MASSFLOW{strcmp(RESULT.STREAM.NAME(:), stname),1}; % [kg/s]
         LFlow = sum([LFlow{:,2}]);
         LDensity = RESULT.STREAM.DENSITY(strcmp(RESULT.STREAM.NAME(:), stname),1); %[kg/cum]
@@ -44,19 +44,19 @@ for i = 1:num_unit
         end
         bottomtemp = h.Tree.FindNode(['\Data\Blocks\',char(RESULT.UNIT.NAME{i}),'\Output\BOTTOM_TEMP']).value; %[K]
         heat_duty = RESULT.UNIT.REBDUTY{i}; %  [J/s]
-        [cost_reboiler] = heater(feedtemp,bottomtemp,P_col,heat_duty,COST.UPF);
+        [cost_reboiler] = NPV_heater(feedtemp,bottomtemp,P_col,heat_duty,COST.UPF);
         % Condensor
         toptemp  = h.Tree.FindNode(['\Data\Blocks\',char(RESULT.UNIT.NAME{i}),'\Output\TOP_TEMP']).value; %[K]
         heat_duty = RESULT.UNIT.CONDDUTY{i}; %  [J/s]
-        [cost_condensor] = heater(feedtemp,toptemp,P_col,heat_duty,COST.UPF);
+        [cost_condensor] = NPV_heater(feedtemp,toptemp,P_col,heat_duty,COST.UPF);
  
         outlet_distillate = RESULT.STREAM.MASSFLOW{strcmp(RESULT.STREAM.NAME(:), stname),1}; % [kg/s]
         outlet_distillate = sum([outlet_distillate{:,2}]);
         
         stnameinlet=RESULT.UNIT.CONNECTION{i,1}(1,strcmp(RESULT.UNIT.CONNECTION{i,1}(2,:), 'F(IN)'));
         inlet = RESULT.STREAM.MASSFLOW{strcmp(RESULT.STREAM.NAME(:), stnameinlet),1};
-        % distl type 1 ÀÌ¸é partial·Î ¼ö·Å½ÃÅ°°í ¿©±â¼­ totalÀ» º¸°í
-        % distl type 2 ÀÌ¸é total·Î ¼ö·Å½ÃÅ°°í ¿©±â¼­ partialÀ» º¸ÀÚ
+        % distl type 1 ì´ë©´ partialë¡œ ìˆ˜ë ´ì‹œí‚¤ê³  ì—¬ê¸°ì„œ totalì„ ë³´ê³ 
+        % distl type 2 ì´ë©´ totalë¡œ ìˆ˜ë ´ì‹œí‚¤ê³  ì—¬ê¸°ì„œ partialì„ ë³´ì
         Sigma = 72; % [dyne/cm] 18.3 for MTBE, 72 for water
         
         if strcmp(h.Tree.FindNode(['\Data\Blocks\',char(RESULT.UNIT.NAME{i}),'\Input\',COND_index]).value, 'PARTIAL') ||...
@@ -136,7 +136,7 @@ for i = 1:num_unit
     end
     if strcmp(RESULT.UNIT.NAME{i},'PSA2:C')
         V_activecarbon = h.Tree.FindNode("\Data\Flowsheeting Options\Design-Spec\DSGN:C\Output\FINAL_VAL\1").value;
-        P_Col = 27.3; %bar ºñ·Ï 1 bar·Î ¿îÀüÇÏ°ÚÁö¸¸, regeneration ÇÒ ¶§ µî °í¾ĞÀÌ µÉÀÏÀÌ ÀÖÀ» °ÍÀÌ¹Ç·Î
+        P_Col = 27.3; %bar ë¹„ë¡ 1 barë¡œ ìš´ì „í•˜ê² ì§€ë§Œ, regeneration í•  ë•Œ ë“± ê³ ì••ì´ ë ì¼ì´ ìˆì„ ê²ƒì´ë¯€ë¡œ
         [D_Col,H_Col,V_Col,cost]=NPV_PSA(P_Col,V_activecarbon);
         CapitalCosts.PSA = [CapitalCosts.PSA cost];
         RESULT.UNIT.CAPITAL_COST(i) = cost;
@@ -156,7 +156,7 @@ for i = 1:num_unit
 end
 
 % Heater ($)
-% U°ªÀÌ ³Ê¹« Å©°Ô µÇ¾î ÀÖ´Âµí? È®ÀÎ ÇÏ°í ¼öÁ¤ ÇÊ¿ä.
+% Uê°’ì´ ë„ˆë¬´ í¬ê²Œ ë˜ì–´ ìˆëŠ”ë“¯? í™•ì¸ í•˜ê³  ìˆ˜ì • í•„ìš”.
 CapitalCosts.heater=[];
 for i = 1:num_unit
     if strcmp(RESULT.UNIT.UNIT_NAME{i},'Heater') &&...
@@ -170,7 +170,7 @@ for i = 1:num_unit
         P = RESULT.UNIT.PRESSURE{i}; %  [Pa]
         heat_duty = RESULT.UNIT.HEATDUTY{i}; %  [J/s]
         
-        [cost] = heater(T1,T2,P,heat_duty,COST.UPF);
+        [cost] = NPV_heater(T1,T2,P,heat_duty,COST.UPF);
         CapitalCosts.heater = [CapitalCosts.heater cost];
         RESULT.UNIT.CAPITAL_COST(i) = cost;
     end
